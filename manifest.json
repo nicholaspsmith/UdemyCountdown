@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Udemy Course Countdown Plugin",
+  "description": "This extension tells you how much time you have left in your udemy course",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+      {
+        "matches": ["https://www.udemy.com/*"],
+        "js": ["jquery.js","popup.js"]
+      }
+    ]
+}
