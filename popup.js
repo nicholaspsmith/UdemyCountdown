@@ -11,7 +11,7 @@ $(document).ready(function(){
   var interval = setInterval(function(){
     if (checkReady()) {
       clearInterval(interval)
-      setTimeout(function(){
+      setInterval(function(){
         $('.lecture__item').not('.completed').map(function(i,el){
           const rawTime = $(el).find('.lecture__item__link__time').html();
           var timeArr = rawTime.split(':');
@@ -26,6 +26,8 @@ $(document).ready(function(){
         var string = `${hours} hours and ${minutes} minutes remaining in this course`;
         console.log(string);
 
+        $('.curriculum-navigation .panel-group .panel')[0].remove()
+
         $('.curriculum-navigation .panel-group').prepend(
           '<div class="panel curriculum-navigation__section">' +
           '<div class="panel-heading">' + 
@@ -35,7 +37,9 @@ $(document).ready(function(){
           '</div>' +
           '</div>'
         )
-      }, 2000);
+
+        rawTime = timeArr = min = sec = total = minutes = hours = string = null
+      }, 5000);
 
     }
   });  
