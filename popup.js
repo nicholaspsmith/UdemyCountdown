@@ -26,10 +26,13 @@ $(document).ready(function(){
         var string = `${hours} hours and ${minutes} minutes remaining in this course`;
         console.log(string);
 
-        $('.curriculum-navigation .panel-group .panel')[0].remove()
+        const timePanels = $('.curriculum-navigation .panel-group .panel.time')
+        if (timePanels.length > 0 && typeof timePanels[0] !== 'undefined') {
+          timePanels[0].remove()
+        }
 
         $('.curriculum-navigation .panel-group').prepend(
-          '<div class="panel curriculum-navigation__section">' +
+          '<div class="panel curriculum-navigation__section time">' +
           '<div class="panel-heading">' + 
           '<div class="curriculum-navigation__section__title">' + 
           string +
@@ -39,8 +42,8 @@ $(document).ready(function(){
         )
 
         rawTime = timeArr = min = sec = total = minutes = hours = string = null
-      }, 5000);
+      }, 1400);
 
     }
-  });  
+  });
 });
