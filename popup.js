@@ -21,28 +21,33 @@ $(document).ready(function(){
           min += sec;
           total += min;
         });
+
+        const currentTimeArr = document.getElementsByClassName('vjs-current-time-display')[0].textContent.split(' ');
+        const currentTime = currentTimeArr[currentTimeArr.length - 1];
+        const currentTimeSplit = currentTime.split(':')
+        const currentTimeInMinutes = +currentTimeSplit[0] + (currentTimeSplit[1] / 60)
+
+        total -= currentTimeInMinutes
+
         var minutes = ((total % 60) + "").split('.')[0];
         var hours = ((total / 60) + "").split('.')[0];
-        var string = `${hours} hours and ${minutes} minutes remaining in this course`;
-        console.log(string);
 
-        const timePanels = $('.curriculum-navigation .panel-group .panel.time')
-        if (timePanels.length > 0 && typeof timePanels[0] !== 'undefined') {
-          timePanels[0].remove()
+        var string = `${hours} hours and ${minutes} minutes remaining`;
+
+
+        const timeScreenPanels = $('.course-info__section.time');
+        if (timeScreenPanels.length > 0) {
+          timeScreenPanels[0].remove()
         }
 
-        $('.curriculum-navigation .panel-group').prepend(
-          '<div class="panel curriculum-navigation__section time">' +
-          '<div class="panel-heading">' + 
-          '<div class="curriculum-navigation__section__title">' + 
+        $('.course-info__section').append(
+          '<div class="course-info__section hidden-xxs hidden-xs time">' + 
           string +
-          '</div>' +
-          '</div>' +
           '</div>'
         )
 
         rawTime = timeArr = min = sec = total = minutes = hours = string = null
-      }, 1400);
+      }, 1000);
 
     }
   });
