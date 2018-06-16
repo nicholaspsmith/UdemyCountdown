@@ -1,9 +1,12 @@
 $(document).ready(function(){
   var total = 0;
   var checkReady = function() {
-    if (typeof $('.sidebar--nav') === 'undefined' || $('.sidebar--nav').length === 0) {
+    console.log('checking if ready...')
+    if (typeof $('.panel-body') === 'undefined' || $('.panel-body').length === 0) {
+      console.log('not ready')
       return false;
     } else {
+      console.log('ready')
       return true;
     }
   }
@@ -33,6 +36,7 @@ $(document).ready(function(){
         var hours = ((total / 60) + "").split('.')[0];
 
         var string = `${hours} hours and ${minutes} minutes remaining`;
+        console.log(string)
 
 
         const timeScreenPanels = $('.course-info__section.time');
@@ -41,7 +45,7 @@ $(document).ready(function(){
         }
 
         $('.course-info__section').append(
-          '<div class="course-info__section hidden-xxs hidden-xs time">' + 
+          '<div class="course-info__section hidden-xxs hidden-xs time" style="clear:left;display: block;">' +
           string +
           '</div>'
         )
@@ -50,5 +54,5 @@ $(document).ready(function(){
       }, 1000);
 
     }
-  });
+  }, 2000);
 });
