@@ -53,6 +53,8 @@ $(document).ready(function(){
           timeScreenPanels[0].remove()
         }
 
+        $('.course-info__section.hidden-xxs.hidden-xs').css({"backgroundColor":"black","padding":"4px","borderRadius":"5px"})
+
         $('.course-info__section').append(
           '<div class="course-info__section hidden-xxs hidden-xs time" style="clear:left;display: block;">' +
           string +
