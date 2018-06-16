@@ -32,26 +32,38 @@ $(document).ready(function(){
 
         total -= currentTimeInMinutes
 
+        const playbackRate = parseFloat($('.vjs-playback-rate-value').html())
+        const adjustedTotal = total / playbackRate
+
         var minutes = ((total % 60) + "").split('.')[0];
         var hours = ((total / 60) + "").split('.')[0];
 
+        var adjustedMinutes = ((adjustedTotal % 60) + "").split('.')[0];
+        var adjustedHours = ((adjustedTotal / 60) + "").split('.')[0];
+
         var string = `${hours} hours and ${minutes} minutes remaining`;
-        console.log(string)
+        var adjustedString = `${adjustedHours} hours and ${adjustedMinutes} minutes at this speed`;
 
 
         const timeScreenPanels = $('.course-info__section.time');
         if (timeScreenPanels.length > 0) {
+          if (timeScreenPanels.length > 1) {
+            timeScreenPanels[1].remove()
+          }
           timeScreenPanels[0].remove()
         }
 
         $('.course-info__section').append(
           '<div class="course-info__section hidden-xxs hidden-xs time" style="clear:left;display: block;">' +
           string +
+          '</div>' +
+          '<div class="course-info__section hidden-xxs hidden-xs time" style="clear:left;display: block;">' +
+          adjustedString +
           '</div>'
         )
 
         rawTime = timeArr = min = sec = total = minutes = hours = string = null
-      }, 1000);
+      }, 2000);
 
     }
   }, 2000);
